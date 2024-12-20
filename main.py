@@ -1,8 +1,13 @@
 import streamlit as st
 import openai
+import os
 
-# Configura tu clave de API de OpenAI
-openai.api_key = "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"
+# Carga la API Key desde la variable de entorno
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Verifica si la clave se cargó correctamente
+if not openai.api_key:
+    st.error("API Key no encontrada. Verifica que la clave esté configurada como un secreto en GitHub o en tu entorno local.")
 
 # Título de la aplicación
 st.title("Analizador de Resultados Empresariales con Optimización SEO")
